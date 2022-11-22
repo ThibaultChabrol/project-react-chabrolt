@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from "axios";
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const baseURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=tomato";
 
+
+const App = () => {
+    const [post, setPost] = React.useState(null);
+
+    React.useEffect(() => {
+        axios.get(baseURL).then((response) => {
+            setPost(response.data);
+            console.log(response.data);
+        });
+    }, []);
+
+    if (!post) return null;
+    return (
+        <div>
+            <h1>{post.meals[3].strMeal}</h1>
+        </div>
+    );
+};
 export default App;
