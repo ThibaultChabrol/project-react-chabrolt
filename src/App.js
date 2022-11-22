@@ -1,30 +1,35 @@
 import axios from "axios";
 import React from 'react';
 import Cards from "./component/Cards";
-import Search from "./component/Search";
 
-const baseURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=tomato";
+const baseURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 
 
 const App = () => {
     const [post, setPost] = React.useState(null);
+    const [search, setSearch] = React.useState(null);
 
     React.useEffect(() => {
-        axios.get(baseURL).then((response) => {
-            setPost(response.data);
-        });
-    }, []);
+        {
+            axios.get(baseURL + search).then((response) => {
+                setPost(response.data);
+            });
+        }
+    }, [search]);
+
 
     if (!post) return null;
     return (
         <div>
-            <div class="header">
+            <div className="header">
                 <h1>recette de cuisine</h1>
-                <Search meals={post}/>
-                <div class="mainDiv">
+                <input type="text" name="searchBar" id="searchBar"
+                       placeholder="taper le nom d'un aliment (en anglais)"
+                       onChange={(e) => setSearch(e.target.value)}/>
+                <div className="mainDiv">
 
                     {post.meals.map(meal =>
-                        <div class="card">
+                        <div className="card">
                             <Cards meals={meal}/>
                         </div>
                     )}

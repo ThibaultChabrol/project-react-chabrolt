@@ -1,6 +1,5 @@
 import React from 'react';
 const Cards = ({meals}) => {
-    console.log(meals)
     return (
         <div>
             <h1>{meals.strMeal}</h1>
