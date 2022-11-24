@@ -11,6 +11,7 @@ const App = () => {
             <BrowserRouter>
                 <Menu/>
                 <Routes>
+                    <Route index element={<Recettes/>}/>
                     <Route path="Blog" element={<Blog/>}/>
                     <Route path="Recettes" element={<Recettes/>}/>
                 </Routes>
