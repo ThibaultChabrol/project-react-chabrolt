@@ -1,5 +1,5 @@
-.card{
-    border: 3px solid burlywood ;
+.card {
+    border: 3px solid burlywood;
     max-height: 400px;
     max-width: 400px;
     padding: 15px;
@@ -7,14 +7,45 @@
     margin: 2px;
 }
 
-img{
+img {
     height: 200px;
     width: 200px;
 }
-.mainDiv{
+
+.mainDiv {
     display: flex;
     flex-wrap: wrap;
 }
-.header{
+
+.header {
     text-align: center;
+}
+
+.navbar {
+    background-color: burlywood;
+    display: flex;
+    position: sticky;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    cursor: pointer;
+}
+
+.nav-list {
+    width: 50%;
+    display: flex;
+}
+
+.nav-list li {
+    list-style: none;
+    padding: 26px 30px;
+}
+
+.nav-list li a {
+    text-decoration: none;
+    color: black;
+}
+
+.nav-list li a:hover {
+    color: deepskyblue;
 }

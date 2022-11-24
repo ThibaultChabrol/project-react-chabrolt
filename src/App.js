@@ -1,52 +1,24 @@
-import axios from "axios";
 import React from 'react';
-import Cards from "./component/Cards";
-
-const baseURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
+import Recettes from "./component/Recettes";
+import Menu from "./component/Menu";
+import Blog from "./component/Blog";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 
 const App = () => {
-    const [post, setPost] = React.useState(null);
-    const [search, setSearch] = React.useState("");
-
-    React.useEffect(() => {
-        {
-            axios.get(baseURL + search).then((response) => {
-                setPost(response.data.meals);
-            });
-        }
-    }, [search]);
-
-
-    if (!post) {
-        return (
-            <div className="header">
-                <h1>recette de cuisine</h1>
-                <input type="text" name="searchBar" id="searchBar"
-                       placeholder="taper le nom d'un aliment (en anglais)"
-                       value={search}
-                       onChange={(e) => setSearch(e.target.value)}/>
-            </div>
-        )
-    }
     return (
         <div>
-            <div className="header">
-                <h1>recette de cuisine</h1>
-                <input type="text" name="searchBar" id="searchBar"
-                       placeholder="taper le nom d'un aliment (en anglais)"
-                       value={search}
-                       onChange={(e) => setSearch(e.target.value)}/>
-            </div>
-            <div className="mainDiv">
-                {post.map(meal =>
-                    <div className="card">
-                        <Cards meals={meal}/>
-                    </div>
-                )}
-            </div>
+            <BrowserRouter>
+                <Menu/>
+                <Routes>
+                    <Route path="Blog" element={<Blog/>}/>
+                    <Route path="Recettes" element={<Recettes/>}/>
+                </Routes>
+            </BrowserRouter>
 
         </div>
+
+
     );
 };
 export default App;
