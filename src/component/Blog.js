@@ -17,7 +17,7 @@ const Blog = () => {
     console.log(post);
     return (
         <div>
-            <Form/>
+            <Form post={post}/>
         </div>
     );
 };

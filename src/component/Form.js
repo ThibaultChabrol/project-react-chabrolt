@@ -1,23 +1,35 @@
 import React from 'react';
+import axios from "axios";
 
-const Form = () => {
-    const [article, setArticle] = React.useState("");
+
+const Form = ({post}) => {
+    const [content, setContent] = React.useState("");
     const [pseudo, setPseudo] = React.useState("");
+    const baseURL = "http://localhost:3003/articles";
 
-    const handleChangepseudo = (event) => {
+    const handleChangePseudo = (event) => {
         setPseudo(event.target.value);
     };
 
-    const handleChangearticle = (event) => {
-        setArticle(event.target.value);
+    const handleChangeContent = (event) => {
+        setContent(event.target.value);
     };
     const handleSubmit = (event) => {
         // prevents the submit button from refreshing the page
-        event.preventDefault();
-        console.log(article);
-        console.log(pseudo);
-    };
 
+        const article = {
+            "author": pseudo,
+            "content": content,
+            "date": Date.now(),
+            "id": post.at(-1).id + 1,
+        }
+
+        axios.post(baseURL, article).then(response =>
+            window.location.reload()
+        )
+        event.preventDefault();
+
+    };
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -27,15 +39,15 @@ const Form = () => {
                         name="pseudo"
                         placeholder="Name"
                         value={pseudo}
-                        onChange={handleChangepseudo}
+                        onChange={handleChangePseudo}
                     />
                 </div>
                 <div>
                     <textarea
                         name="article"
                         placeholder="Article"
-                        value={article} cols="40" rows="5"
-                        onChange={handleChangearticle}
+                        value={content} cols="40" rows="5"
+                        onChange={handleChangeContent}
                     />
 
                 </div>
