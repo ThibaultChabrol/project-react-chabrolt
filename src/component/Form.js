@@ -15,19 +15,21 @@ const Form = ({post}) => {
         setContent(event.target.value);
     };
     const handleSubmit = (event) => {
+        if (content.length < 140) {
+            alert('veuillez rentrez un texte de plus de 140 caractéres afin de pouvoir publiez')
+        } else {
+            const article = {
+                "author": pseudo,
+                "content": content,
+                "date": Date.now(),
+                "id": post.at(-1).id + 1,
+            }
 
-        const article = {
-            "author": pseudo,
-            "content": content,
-            "date": Date.now(),
-            "id": post.at(-1).id + 1,
+            axios.post(baseURL, article).then(response =>
+                window.location.reload()
+            )
+            event.preventDefault();
         }
-
-        axios.post(baseURL, article).then(response =>
-            window.location.reload()
-        )
-        event.preventDefault();
-
     };
     return (
         <div className="form">

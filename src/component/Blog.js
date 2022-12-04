@@ -2,7 +2,6 @@ import React from 'react';
 import axios from "axios";
 import Form from "./Form";
 import Article from "./Article";
-
 const baseURL = "http://localhost:3003/articles";
 
 
@@ -16,16 +15,15 @@ const Blog = () => {
             });
         }
     }, []);
+    console.log(post);
     return (
         <div>
             <Form post={post}/>
             <div>
-                {post.map(article =>
-                    <Article article={article}/>
+                {post.map(articles =>
+                    <Article articles={articles}/>
                 )}
             </div>
-
-
         </div>
     );
 };
