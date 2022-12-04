@@ -16,7 +16,6 @@ const Blog = () => {
             });
         }
     }, []);
-    console.log(post)
     return (
         <div>
             <Form post={post}/>

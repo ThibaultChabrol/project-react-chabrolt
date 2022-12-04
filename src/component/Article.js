@@ -7,8 +7,8 @@ const Article = ({article}) => {
 
 
     const handleClick = (event) => {
-        axios.delete(`http://localhost:3003/articles/posts/${article.id}`)
-            .then(() => console.log('delete successfull'));
+        axios.delete(`http://localhost:3003/articles/${article.id}`)
+            .then(() => console.log("delete succes"));
         event.preventDefault();
     };
 
