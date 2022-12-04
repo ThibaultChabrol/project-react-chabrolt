@@ -15,7 +15,6 @@ const Form = ({post}) => {
         setContent(event.target.value);
     };
     const handleSubmit = (event) => {
-        // prevents the submit button from refreshing the page
 
         const article = {
             "author": pseudo,
@@ -31,7 +30,7 @@ const Form = ({post}) => {
 
     };
     return (
-        <div>
+        <div className="form">
             <form onSubmit={handleSubmit}>
                 <div>
                     <input
